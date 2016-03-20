@@ -1,0 +1,47 @@
+{
+  "dot": {
+    "alias": "*",
+    "params": [
+      {
+        "name": "u",
+        "flag": "u",
+        "type": "vector"
+      },
+      {
+        "name": "v",
+        "flag": "v",
+        "type": "vector"
+      }
+    ],
+    "output": "$.u.x * $.v.x + $.u.y * $.v.y"
+  },
+  "norm": {
+    "params": [
+      {
+        "name": "vector",
+        "flag": "v",
+        "type": "vector"
+      }
+    ],
+    "output": "Math.sqrt($.v.x * $.v.x + $.v.y * $.v.y)"
+  },
+  "normalize": {
+    "params": [
+      {
+        "name": "u",
+        "flag": "u",
+        "type": "vector"
+      },
+      {
+        "name": "vector",
+        "flag": "v",
+        "type": "vector"
+      }
+    ],
+    "set": "r @norm v:$.v",
+    "output": {
+      "x": "$.v.x / $.r",
+      "y": "$.v.y / $.r"
+    }
+  }
+}
