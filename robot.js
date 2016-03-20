@@ -1,8 +1,22 @@
 'use strict';
 
+/**
+* Alan Badillo Salas © 2016
+* mail: badillo.soft@hotmail.com
+* secure-mail: 2ax@protonmail.com
+* twitter: @badillosoft
+* github: badillo.soft
+*/
+
+// Libraries
 var vector = require('./lib/vector.json');
 
+// Class
 class Robot {
+	/**
+	* This class represent a Robot able to eval commands
+	* @param array commands Array of evaluables commands
+	*/
 	constructor (commands) {
 		this.commands = {
 			library: {
@@ -16,6 +30,11 @@ class Robot {
 		}
 	}
 
+	/**
+	* @param command command A command that defines the new
+	* command for the robot.
+	* @return bool If the command has been created.
+	*/
 	createCommand (command) {
 		var commands = this.commands;
 
@@ -40,6 +59,10 @@ class Robot {
 		return true;
 	}
 
+	/**
+	* @param string name The command name.
+	* @return command The command match with this command.
+	*/
 	getCommand(name) {
 		var lib = this.commands.library;
 		for (var libname in lib) {
@@ -52,6 +75,10 @@ class Robot {
 		return null;
 	}
 
+	/**
+	* @param commandParams input The evaluable command.
+	* @return object The result with code and message.
+	*/
 	evalCommand (input) {
 		if (!input.command) {
 			return {
@@ -88,7 +115,8 @@ class Robot {
 					}
 					//console.log(aux_cmd);
 					var r = this.evalCommand(aux_cmd);
-					$[name] = r.result || 0;
+
+					$[name] = r.result;
 					// console.log($);
 				}
 			);
@@ -140,4 +168,5 @@ class Robot {
 	}
 }
 
+// Module export
 module.exports = Robot;
